@@ -1,0 +1,4 @@
+FROM httpd:2.4.43
+
+COPY ./web /var/www/app/web
+COPY ./docker/apache2/httpd.conf /usr/local/apache2/conf/httpd.conf

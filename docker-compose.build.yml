@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  nginx:
+    image: cource_nginx:ver_1
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile_build
+    ports:
+      - 80:80
+
+  apache:
+    image: cource_apache:ver_1
+    build:
+      context: .
+      dockerfile: ./docker/apache2/Dockerfile_build
+    ports:
+      - 88:80
+
+  php:
+    image: cource_php:ver_1
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile_build
