@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  php:
+    image: vudav/docker-course:php
+    restart: allways
+    volumes:
+      - runtime:/var/www/app/runtime
+
+  nginx:
+    image: vudav/docker-course:nginx
+    restart: allways
+    ports:
+      - 80:80
+
+  apache2:
+    image: vudav/docker-course:apache
+    restart: allways
+    ports:
+      - 88:80
+
+  redis:
+    image: redis:4.0.9
+    restart: allways
+    volumes:
+      - redis-data:/data
+    command: '--appendonly yes'
+
+  mongo:
+    image: mongo:3.6.3
+    restart: allways
+    volumes:
+      - mongo-data:/data/db
+
+  postgres:
+    image: postgres:10.12
+    restart: allways
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+  mysql:
+    image: mysql:5.7.29
+    restart: allways
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: mysql_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+
+volumes:
+  runtime:
+  redis-data:
+  mongo-data:
+  pg-data:
+  mysql-data:
